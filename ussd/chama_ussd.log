@@ -17,3 +17,123 @@ Params=Array
     [:startTime] => 2020-08-30 21:24:10
     [:userParams] => 
 )
+[ERROR : 2020-09-05 18:51:03] _execute error: PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY' in C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php:36
+Stack trace:
+#0 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(36): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(59): _execute('INSERT INTO cha...', Array)
+#2 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\index.php(24): createNewUssdSession(Object(UssdSession))
+#3 {main}
+SQL=INSERT INTO chama_ussd_sessions (SessionId,Msisdn,UssdCode,UssdString,UssdProcessString,currentFeedbackString,currentFeedbackType,startTime,userParams) VALUES(:sessionId,:msisdn,:ussdCode,:ussdString,:ussdProcessString,:currentFeedbackString,:currentFeedbackType,:startTime,:userParams)
+Params=Array
+(
+    [:sessionId] => 1
+    [:msisdn] => 254741405470
+    [:ussdCode] => 123
+    [:ussdString] => 
+    [:ussdProcessString] => 
+    [:currentFeedbackString] => 
+    [:currentFeedbackType] => 
+    [:startTime] => 2020-09-05 18:51:03
+    [:userParams] => 
+)
+[ERROR : 2020-09-05 19:18:01] _execute error: PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '7' for key 'PRIMARY' in C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php:36
+Stack trace:
+#0 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(36): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(59): _execute('INSERT INTO cha...', Array)
+#2 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\index.php(28): createNewUssdSession(Object(UssdSession))
+#3 {main}
+SQL=INSERT INTO chama_ussd_sessions (SessionId,Msisdn,UssdCode,UssdString,UssdProcessString,currentFeedbackString,currentFeedbackType,startTime,userParams) VALUES(:sessionId,:msisdn,:ussdCode,:ussdString,:ussdProcessString,:currentFeedbackString,:currentFeedbackType,:startTime,:userParams)
+Params=Array
+(
+    [:sessionId] => 7
+    [:msisdn] => 254741405470
+    [:ussdCode] => 123
+    [:ussdString] => 
+    [:ussdProcessString] => 
+    [:currentFeedbackString] => 
+    [:currentFeedbackType] => 
+    [:startTime] => 2020-09-05 19:18:01
+    [:userParams] => 
+)
+[ERROR : 2020-09-05 19:18:04] _execute error: PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '7' for key 'PRIMARY' in C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php:36
+Stack trace:
+#0 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(36): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(59): _execute('INSERT INTO cha...', Array)
+#2 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\index.php(28): createNewUssdSession(Object(UssdSession))
+#3 {main}
+SQL=INSERT INTO chama_ussd_sessions (SessionId,Msisdn,UssdCode,UssdString,UssdProcessString,currentFeedbackString,currentFeedbackType,startTime,userParams) VALUES(:sessionId,:msisdn,:ussdCode,:ussdString,:ussdProcessString,:currentFeedbackString,:currentFeedbackType,:startTime,:userParams)
+Params=Array
+(
+    [:sessionId] => 7
+    [:msisdn] => 254741405470
+    [:ussdCode] => 123
+    [:ussdString] => 
+    [:ussdProcessString] => 
+    [:currentFeedbackString] => 
+    [:currentFeedbackType] => 
+    [:startTime] => 2020-09-05 19:18:04
+    [:userParams] => 
+)
+[ERROR : 2020-09-06 11:55:50] _select error: PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ in C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php:13
+Stack trace:
+#0 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(13): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(114): _select('SELECT id,msisd...', Array)
+#2 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\classes\RootMenuAction.php(11): getUssdUserList('254741405470')
+#3 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\index.php(27): RootMenuAction->process(Object(UssdSession))
+#4 {main}
+SQL=SELECT id,msisdn,firstName,lastName,idNumber,dateCreated FROM chama_ussd_users WHERE msisdn=:msisdn LIMIT 1
+Params=Array
+(
+    [:msisdn] => 254741405470
+)
+[ERROR : 2020-09-07 06:43:32] _select error: PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ in C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php:13
+Stack trace:
+#0 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(13): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(71): _select('SELECT sessionI...', Array)
+#2 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\index.php(36): getUssdSessionList('16')
+#3 {main}
+SQL=SELECT sessionId,msisdn,UssdCode,UssdString,UssdStringPrefix,UssdProcessString,previousFeedbackType,currentFeedbackString,currentFeedbackType,startTime,userParams FROM chama_ussd_sessions WHERE sessionId=:sessionId LIMIT 1
+Params=Array
+(
+    [:sessionId] => 16
+)
+[ERROR : 2020-09-07 06:43:36] _execute error: PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ in C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php:33
+Stack trace:
+#0 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(33): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(106): _execute('UPDATE chama_us...', Array)
+#2 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\index.php(68): updateUssdSession(Object(UssdSession))
+#3 {main}
+SQL=UPDATE chama_ussd_sessions SET UssdString=:ussdString,UssdStringPrefix=:ussdStringPrefix, UssdProcessString=:ussdProcessString,previousFeedbackType=:previousFeedbackType,currentFeedbackString=:currentFeedbackString,currentFeedbackType=:currentFeedbackType,userParams=:userParams WHERE sessionId=:sessionId
+Params=Array
+(
+    [:ussdString] => 
+    [:ussdStringPrefix] => 
+    [:ussdProcessString] => 
+    [:previousFeedbackType] => 
+    [:currentFeedbackString] => END Connection error. Please try again.
+    [:currentFeedbackType] => 
+    [:userParams] => 
+    [:sessionId] => 
+)
+[ERROR : 2020-09-07 08:11:30] _execute error: PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY' in C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php:36
+Stack trace:
+#0 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(36): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\QueryManager.php(59): _execute('INSERT INTO cha...', Array)
+#2 C:\xampp\htdocs\SDG\team-189-a-frontend\ussd\index.php(31): createNewUssdSession(Object(UssdSession))
+#3 {main}
+SQL=INSERT INTO chama_ussd_sessions (SessionId,Msisdn,UssdCode,UssdString,UssdProcessString,currentFeedbackString,currentFeedbackType,startTime,userParams) VALUES(:sessionId,:msisdn,:ussdCode,:ussdString,:ussdProcessString,:currentFeedbackString,:currentFeedbackType,:startTime,:userParams)
+Params=Array
+(
+    [:sessionId] => 1
+    [:msisdn] => 254741405437
+    [:ussdCode] => 123
+    [:ussdString] => 
+    [:ussdProcessString] => 
+    [:currentFeedbackString] => CON Welcome to CHAMA USSD. Enter your First Name to register for this service:
+    [:currentFeedbackType] => FIRSTNAME_REQ
+    [:startTime] => 2020-09-07 08:11:30
+    [:userParams] => 
+)

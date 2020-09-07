@@ -1,6 +1,7 @@
 <?php
 
-class UssdSession {
+class UssdSession
+{
 
     var $sessionId;
     var $msisdn;
@@ -17,13 +18,21 @@ class UssdSession {
 
     const USER_ID = "USER_ID";
     const FIRSTNAME = "FIRSTNAME";
-    const LASTNAME = "LASTNAME";
+    const SURNAME = "SURNAME";
     const IDNUMBER = "IDNUMBER";
+    const LOCATION = "LOCATION";
+    const GENDER = "GENDER";
+    const DOB = "DOB";
+    const MARITAL_STATUS = "MARITAL_STATUS";
+    const CHAMA_ID = "CHAMA_ID";
+    const STATUS = "STATUS";
 
     const NOT_FOUND = "NOT_FOUND";
 
-    public static function getUserParam($paramName, $userParams) {
+    public static function getUserParam($paramName, $userParams)
+    {
         $params = explode("*", $userParams);
+
         //get latest input
         for ($i = count($params) - 1; $i > -1; $i--) {
             $keyValue = explode("=", $params[$i]);
@@ -33,33 +42,18 @@ class UssdSession {
         }
         return self::NOT_FOUND;
     }
-
 }
 
-class UssdUser {
-
-    var $id;
-    var $msisdn;
+class UssdUser
+{
+    var $dob;
     var $firstName;
-    var $lastName;
-    var $idNumber;
-    var $dateCreated;
-
-}
-
-class RegisteredVehicle {
-
-    var $id;
+    var $surname;
+    var $gender;
+    var $idno;
+    var $location;
+    var $marital_status;
+    var $status;
     var $msisdn;
-    var $vehicleRegistration;
-    var $rateId;
-    var $rateCategory;
-    var $paymentRate;
-    var $item;
-    var $dateCreated;
-
+    var $chama_id;
 }
-
-
-
-

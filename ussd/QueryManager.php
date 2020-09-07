@@ -60,6 +60,7 @@ function createNewUssdSession($ussdSession) {
 }
 
 function getUssdSessionList($sessionId){
+    
     $ussdSessionList = array();
     $sql = "SELECT sessionId,msisdn,UssdCode,UssdString,UssdStringPrefix,UssdProcessString,previousFeedbackType,currentFeedbackString,currentFeedbackType,startTime,userParams"
             . " FROM chama_ussd_sessions"
@@ -68,6 +69,7 @@ function getUssdSessionList($sessionId){
         ':sessionId' => $sessionId,
     );
     $resultset = _select($sql, $params);
+    // var_dump($resultset); die();
     foreach ($resultset as $record) {
         $ussdSession = new UssdSession();
         $ussdSession->sessionId = $record['sessionId'];
@@ -87,6 +89,7 @@ function getUssdSessionList($sessionId){
 }
 
 function updateUssdSession($ussdSession) {
+   
     $sql = "UPDATE chama_ussd_sessions SET UssdString=:ussdString,UssdStringPrefix=:ussdStringPrefix, UssdProcessString=:ussdProcessString,"
             . "previousFeedbackType=:previousFeedbackType,currentFeedbackString=:currentFeedbackString,currentFeedbackType=:currentFeedbackType,userParams=:userParams"
             . " WHERE sessionId=:sessionId";
@@ -104,6 +107,9 @@ function updateUssdSession($ussdSession) {
 }
 
 function getUssdUserList($msisdn) {
+
+    //check from the API
+
     $ussdUserList = array();
     $sql = "SELECT id,msisdn,firstName,lastName,idNumber,dateCreated"
             . " FROM chama_ussd_users"
