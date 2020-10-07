@@ -2,13 +2,17 @@
 session_start();
 include ("inc/dblink.php");
 include ("inc/header.php");
-$dblink = mysqli_connect('localhost','team189','team189','team189');
+
 $query ="SELECT COUNT(*) AS TRX FROM customers";
 
 file_put_contents("log.txt","$query",FILE_APPEND);
 
  $row    = mysqli_fetch_array(mysqli_query($dblink,$query));
  $result = $row[TRX];
+
+$sql = "SELECT SUM(amount) Total FROM transaction WHERE amount>0";
+$rowx = mysqli_fetch_array(mysqli_query($dblink,$sql));
+$rs  = $rowx[Total];
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,7 +25,7 @@ file_put_contents("log.txt","$query",FILE_APPEND);
             </a>
         </div>
         <?php
-        include ("inc/sidebar.php");
+            include ("inc/sidebar.php");
         ?>
     </div>
     <div class="main-panel">
@@ -43,7 +47,7 @@ file_put_contents("log.txt","$query",FILE_APPEND);
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Awesome16</p>
+                                        <p class="card-category"><?php echo $rs? $rs: 'No Transactions';?></p>
                                         <p class="card-title"><p>
                                     </div>
                                 </div>
@@ -62,7 +66,6 @@ file_put_contents("log.txt","$query",FILE_APPEND);
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-<!--                                        <p class="card-category"></p>-->
                                         <p class="card-title" id="balance">
                                         <p>
                                     </div>
@@ -156,7 +159,7 @@ file_put_contents("log.txt","$query",FILE_APPEND);
             </div>
         </div>
         <?php
-        include ("inc/footer.php");
+          include ("inc/footer.php");
         ?>    
 </body>
 </html>

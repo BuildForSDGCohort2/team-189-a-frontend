@@ -5,11 +5,10 @@
 */
     include ("inc/header.php");
     include ("inc/functions.php");
-   // include ("inc/dblink.php");
-    // if(!isset($_SESSION['CONTACT_MSISDN'])){
-    //     header("location:signin.php");
-    // }
- $dblink = mysqli_connect('localhost','team189','team189','team189');
+    include ("inc/dblink.php");
+//     if(!isset($_SESSION['CONTACT_MSISDN'])){
+//         header("location:signin.php");
+//     }
     if(isset($_POST['btn-users'])){
         $fname          =$_POST['firstname'];
         $sname          =$_POST['surname'];
@@ -27,7 +26,7 @@
 
         file_put_contents("log.txt","$sql",FILE_APPEND);
         if (mysqli_query($dblink,$sql)) {
-            $response ="<div class='alert alert-success'>User Created Successfully</div>";
+            $response ="<div class='alert alert-success'>User Created Successfully&nbsp<a href='customers.php'>Click here to View Customers</a></button> </div>";
         }else{
             $response ="<div class='alert alert-danger'>Failed to Create User</div>";
         }

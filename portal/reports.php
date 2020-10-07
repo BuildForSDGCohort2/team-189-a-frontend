@@ -3,8 +3,8 @@
  include ("inc/header.php");
  include ("inc/dblink.php");
  include ("inc/functions.php");
- $dblink = mysqli_connect('localhost','team189','team189','team189');
  $sql = "SELECT * FROM transaction";
+$res = mysqli_query($dblink, $sql);
 
 ?>
 <body class="">
@@ -36,31 +36,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Complete Transactions</h4>
-                            <form class="form-inline text-right" action="reports.php" method="POST">
-                                <button type="submit" id ="exportExcel" name='exportExcel' value="Export to Excel"  class="btn btn-info btn-xs">Excel</button>
-                                <button type="submit" id ="exportPdf"   name='exportPdf'   value="Export to Pdf"    class="btn btn-info btn-xs">PDF  </button>
-                            </form>
-                            <?php
-
-//                            if (isset($_POST["exportExcel"])) {
-
-                            if(isset($_POST['exportExcel'])) {
-                                $fp = fopen("php://output", 'w') or die("Can't open php://output");
-                                header("Content-Type:application/csv");
-                                header("Content-Disposition:attachment;filename=Transactions.csv");
-
-                                $header = array("ID" => "ID", "REF_ID" => "REF_ID", "Request_Time" => "Request_Time", "Time_Complicated" => "Time_Completed", "Service_Name" => "Service_Name", "Phone_Number" => "Phone_Number",
-                                    "CUSTOMER_NAME" => "CUSTOMER_NAME", "AMOUNT" => "AMOUNT", "DESC" => "DESC");
-
-                                fputcsv($fp, $header);
-                                while ($row = oci_fetch_array($result)) {
-                                    fputcsv($fp, array("ID" => $row[ID], "REF_ID" => $row[REF_ID], "Request_Time" => $row[Request_Time], "Time_Complicated" => $row[Time_Completed], "Service_Name" => $row[Service_Name], "Phone_Number" => $row[Phone_Number],
-                                        "CUSTOMER_NAME" => $row[CUSTOMER_NAME], "AMOUNT" => $row[AMOUNT], "DESC" => $row[DESC]));
-                                }
-                                fclose($fp);
-                                exit();
-                            }
-                            ?>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -90,7 +65,9 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        while($row = mysqli_fetch_array(mysqli_query($dblink,$sql))){
+                                         $count = 0;
+                                         while ($row = mysqli_fetch_array($res)) {
+                                             $count++;
                                         ?>
                                         <tr>
                                             <td>
@@ -116,7 +93,6 @@
                                             </td>
                                         </tr>
                                             <?php
-                                            $count++;
                                         }
                                         ?>
                                     </tbody>

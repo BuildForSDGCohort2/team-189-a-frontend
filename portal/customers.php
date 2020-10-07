@@ -2,9 +2,10 @@
  session_start();
  error_reporting(0);
  include ("inc/header.php");
- //include ("inc/dblink.php");
- $dblink = mysqli_connect('localhost','team189','team189','team189');
+ include ("inc/dblink.php");
  $sql = "SELECT * FROM customers";
+$res = mysqli_query($dblink,$sql);
+
 ?>
 <body class="">
 <div class="wrapper ">
@@ -63,8 +64,10 @@
                                     </th>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        while($row = mysqli_fetch_array(mysqli_query($dblink,$sql))){
+                                    <?php
+                                    $count = 0;
+                                    while ($row = mysqli_fetch_array($res)) {
+                                        $count++;
                                         ?>
                                         <tr>
                                             <td>

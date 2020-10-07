@@ -2,21 +2,22 @@
     session_start();
     include ("inc/header.php");
     include ("inc/dblink.php");
-
+    if($dblink){
+        echo "Connected";
+    }else{
+        echo "Cool";
+    }
         if (isset($_POST['btn-login'])) {
             $contact_msisdn = $_POST['contact_msisdn'];
             $pin            = hash('sha256', $_POST['pin']);
-            $sql = "SELECT * FROM CUSTOMERS WHERE MSISDN ='".$contact_msisdn."' AND PIN = '".$pin."'";
-            if(mysql_query($dblink,$sql)){
+            $sql = "SELECT * FROM customers WHERE MSISDN ='".$contact_msisdn."' AND PIN = '".$pin."'";
             file_put_contents("log.txt","$sql",FILE_APPEND);
-            if(mysql_fetch_array(mysql_query($dblink,$sql))[pin]==$pin){;
-            $response = '<div class="alert alert-success">Admin Portal</div>';
-             header("location:dashboard.php");
-
-            } else {
-                $response = '<div class="alert alert-danger">Wrong Pin</div>';
+            if(mysqli_query($dblink,$sql)){
+                $response = '<div class="alert alert-success">Admin Portal</div>';
+                 header("location:dashboard.php");
+           }else{
+                $response = '<div class="alert alert-danger">Wrong Credentials</div>';
             }
-        }
     }
 ?>
 <link href="assets/css/signin.css"rel="stylesheet"/>

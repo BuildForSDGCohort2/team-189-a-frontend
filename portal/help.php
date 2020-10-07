@@ -2,34 +2,8 @@
 session_start();
     include ("inc/header.php");
     include ("inc/dblink.php");
-        if(!isset($_SESSION['username'])){
-            header("location:http://197.232.25.77/newagencyportal/signin.php");
-        }
-        if(isset($_POST['btn-pwd'])) {
-
-            $npassword = hash('sha256', $_POST['npassword']);
-            $cpassword = hash('sha256', $_POST['cpassword']);
-            $id        = $_SESSION['username'];
-            file_put_contents("log.txt","$id",FILE_APPEND);
-            $sqlns     ="SELECT AGENT_STORE_ID FROM SP_AGENT_STORES WHERE AGENT_STORE_NAME ='$id'";
-            $result    =oci_parse($dblink,$sqlns);
-            oci_execute($result);
-            $row =oci_fetch_array($result);
-            $agent_store_id =$row[AGENT_STORE_ID];
-
-            if ($npassword != $cpassword) {
-                $response = '<div class="alert alert-danger">Password Doesnt Match</div>';
-            }else{
-                $sql = "UPDATE SP_STORE_USERS SET PASSWORD ='$npassword' WHERE AGENT_STORE_ID = '$agent_store_id'";
-                file_put_contents("log.txt","$sql",FILE_APPEND);
-                $result = oci_parse($dblink,$sql);
-                if (oci_execute($result)){
-                        $response = '<div class="alert alert-success">Successfully Changed Password</div>';
-                    }else{
-                        $response = '<div class="alert alert-danger">Change Password Failed</div>';
-                    }
-                 }
-        }
+    if(isset($_POST['btn-pwd'])) {
+    }
 ?>
 <body class="">
 <div class="wrapper ">
